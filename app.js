@@ -269,16 +269,6 @@ var all_products = [
 
 var products = document.getElementById("products");
 var btn = document.getElementById('btn')
-
-function button(){
-        if (btn.innerText === 'Added'){
-            btn.innerText = 'Add'
-        }
-        else{
-            btn.innerText = 'Added'
-        }
-}
-
 for (i = 0; i < all_products.length; i++) {
   // console.log(all_products[i])
   var element = ` <div class="lg:w-1/4 md:w-1/4 p-4 my-2 mx-0 border-2 border-amber-500 border-y-transparent border-r-transparent rounded my-1">
@@ -290,10 +280,19 @@ for (i = 0; i < all_products.length; i++) {
                 <h3 class="uppercase font-mono text-emerald-600 text-xs tracking-widest title-font mb-1">${all_products[i].category}</h3>
                 <h2 class="title-font font-thin font-sans text-amber-500 text-lg font-medium">${all_products[i].title}</h2>
                 <p class="mt-1 text-emerald-600 font-mono">$${all_products[i].price}</p>
-                <button id="btn" onclick="button()" class="inline w-fit rounded-lg font-mono border-2 p-1 ml-auto mt-auto border-emerald-600 text-emerald-600 hover:border-amber-600 hover:text-amber-500">Add</button>
+                <button id="btn" onclick="addToCart(this)" class="inline w-fit rounded-lg font-mono border-2 p-1 ml-auto mt-auto border-emerald-600 text-emerald-600 hover:border-amber-600 hover:text-amber-500">Add</button>
             </div>
             </div>
         `;
   console.log(products);
   products.innerHTML += element;
 }
+function addToCart(element) {
+  if (element.innerText == "Added") {
+    cartNumber.innerText = cartNumber.innerText - 1;
+    element.innerText = 'Add'
+  } else {
+    cartNumber.innerText = parseInt(cartNumber.innerText) + 1;
+    element.innerText = 'Added'
+  }
+  }
