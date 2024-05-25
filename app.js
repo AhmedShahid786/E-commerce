@@ -268,7 +268,7 @@ var all_products = [
 ];
 
 var products = document.getElementById("products");
-var btn = document.getElementById('btn')
+var cart = document.getElementById("cart")
 
 function button(){
         if (btn.innerText === 'Added'){
@@ -290,10 +290,24 @@ for (i = 0; i < all_products.length; i++) {
                 <h3 class="uppercase font-mono text-emerald-600 text-xs tracking-widest title-font mb-1">${all_products[i].category}</h3>
                 <h2 class="title-font font-thin font-sans text-amber-500 text-lg font-medium">${all_products[i].title}</h2>
                 <p class="mt-1 text-emerald-600 font-mono">$${all_products[i].price}</p>
-                <button id="btn" onclick="button()" class="inline w-fit rounded-lg font-mono border-2 p-1 ml-auto mt-auto border-emerald-600 text-emerald-600 hover:border-amber-600 hover:text-amber-500">Add</button>
+                <button id="btn" onclick="addToCart(this)" class="inline w-fit rounded-lg font-mono border-2 p-1 ml-auto mt-auto border-emerald-600 text-emerald-600 hover:border-amber-600 hover:text-amber-500">Add</button>
             </div>
             </div>
         `;
   console.log(products);
   products.innerHTML += element;
 }
+
+function addToCart(element) {
+  if (element.innerText == "Added") {
+    element.innerText = "Add"
+    element.classList.remove("border-amber-600", "text-amber-500"); 
+    element.classList.add("border-emerald-600", "text-emerald-600")
+    cart.innerText = cart.innerText - 1
+  } else {
+    element.innerText = "Added"
+    element.classList.remove("border-emerald-600", "text-emerald-600")
+    element.classList.add("border-amber-600", "text-amber-500"); 
+    cart.innerText = parseInt(cart.innerText) + 1
+  }
+  }
